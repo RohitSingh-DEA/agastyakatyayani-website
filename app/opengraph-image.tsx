@@ -40,7 +40,7 @@ export default function OpenGraphImage() {
           Building infrastructure. Powering industry.
         </div>
         <div style={{ display: "flex", fontSize: 28, color: "#f59e0b", marginTop: 48 }}>
-          www.agastyakatyayani.com
+          agastyakatyayani.com
         </div>
       </div>
     ),

@@ -1,7 +1,7 @@
 export const site = {
   name: "Agastya Katyayani",
   legalName: "Agastya Katyayani Private Limited",
-  url: "https://www.agastyakatyayani.com",
+  url: "https://agastyakatyayani.com",
   email: "contact@agastyakatyayani.com",
   tagline: "Infrastructure, Mining, Consultancy & Trading",
   description:

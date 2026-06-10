@@ -2,7 +2,7 @@
 
 Marketing website for Agastya Katyayani Private Limited (construction & infrastructure, mining & minerals, consultancy & advisory, trading & supply).
 
-Live domain: [agastyakatyayani.com](https://www.agastyakatyayani.com) · Contact: contact@agastyakatyayani.com
+Live domain: [agastyakatyayani.com](https://agastyakatyayani.com) · Contact: contact@agastyakatyayani.com
 
 ## Stack
 

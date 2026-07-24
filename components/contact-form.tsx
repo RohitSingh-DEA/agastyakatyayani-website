@@ -39,7 +39,7 @@ export function ContactForm() {
   }
 
   const inputClass =
-    "w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30";
+    "w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition-shadow hover:border-slate-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30";
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-4">
@@ -93,19 +93,27 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="mt-1 rounded-lg bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:bg-amber-400"
+        className="mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-md"
       >
         Send Enquiry
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
       </button>
 
       {submitted && (
-        <p className="text-sm text-emerald-700" role="status">
-          Your email app should have opened with the enquiry pre-filled. If it
-          didn&apos;t, write to us directly at{" "}
-          <a href={`mailto:${site.email}`} className="font-semibold underline">
-            {site.email}
-          </a>
-          .
+        <p className="flex items-start gap-2.5 rounded-lg bg-emerald-50 p-4 text-sm leading-relaxed text-emerald-800" role="status">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-emerald-600" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3" />
+          </svg>
+          <span>
+            Your email app should have opened with the enquiry pre-filled. If
+            it didn&apos;t, write to us directly at{" "}
+            <a href={`mailto:${site.email}`} className="font-semibold underline">
+              {site.email}
+            </a>
+            .
+          </span>
         </p>
       )}
     </form>

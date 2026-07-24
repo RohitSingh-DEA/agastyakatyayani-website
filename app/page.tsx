@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { Header } from "@/components/header";
 import { ContactForm } from "@/components/contact-form";
+import { Faq } from "@/components/faq";
 import { Logo } from "@/components/logo";
-import { services, site } from "@/lib/site";
+import { Reveal } from "@/components/reveal";
+import { process, services, site } from "@/lib/site";
 
 const serviceIcons: Record<string, React.ReactNode> = {
   construction: (
@@ -23,27 +25,40 @@ const whyUs = [
   {
     title: "End-to-End Capability",
     text: "From feasibility and design to execution, commissioning, and maintenance — a single accountable partner.",
+    icon: <path d="M12 2l9 4.5v9L12 20l-9-4.5v-9L12 2zM12 2v18M3 6.5l9 4.5 9-4.5" />,
   },
   {
     title: "Multi-Sector Strength",
     text: "Construction, mining, advisory, and trading under one roof lets us de-risk and integrate complex projects.",
+    icon: <path d="M3 3v18h18M7 15l4-5 3 3 5-7" />,
   },
   {
     title: "Public & Private Sector Ready",
     text: "Structured to serve government bodies, PSUs, institutions, and private enterprises alike.",
+    icon: <path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6M4 21h16" />,
   },
   {
     title: "Compliance First",
     text: "Statutory, environmental, and safety compliance built into every engagement from day one.",
+    icon: <path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3zM9 12l2 2 4-4" />,
   },
   {
     title: "Engineering-Led Decisions",
     text: "Civil engineers, surveyors, and technical consultants drive planning — not guesswork.",
+    icon: <path d="M12 3a4 4 0 100 8 4 4 0 000-8zM5 21c0-3.9 3.1-7 7-7s7 3.1 7 7" />,
   },
   {
     title: "Transparent Engagement",
     text: "Clear scopes, honest timelines, and proactive communication at every stage.",
+    icon: <path d="M21 11.5a8.5 8.5 0 01-12.3 7.6L3 20l1.2-5.4A8.5 8.5 0 1121 11.5zM8 11h8M8 14h5" />,
   },
+];
+
+const capabilities = [
+  { label: "Civil & Structural Works", icon: <path d="M3 21h18M5 21V8l7-5 7 5v13" /> },
+  { label: "Minerals & Aggregates", icon: <path d="M12 2l4 7H8l4-7zM4 22l4-8h8l4 8H4z" /> },
+  { label: "Project Advisory", icon: <path d="M9 7h6M9 11h6M9 15h3M5 3h14a1 1 0 011 1v16a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1z" /> },
+  { label: "Import · Export · Supply", icon: <path d="M3 17l5-5 4 4 7-7M16 9h5v5" /> },
 ];
 
 export default function Home() {
@@ -54,58 +69,71 @@ export default function Home() {
       <main className="flex-1">
         {/* Hero */}
         <section className="relative overflow-hidden bg-slate-900 text-white">
+          <div aria-hidden="true" className="bg-grid absolute inset-0 opacity-[0.06]" />
           <div
             aria-hidden="true"
-            className="absolute inset-0 opacity-[0.07]"
-            style={{
-              backgroundImage:
-                "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
-              backgroundSize: "48px 48px",
-            }}
+            className="animate-float-slow absolute -top-24 right-[-6rem] h-96 w-96 rounded-full bg-amber-500/25 blur-[100px]"
           />
+          <div
+            aria-hidden="true"
+            className="animate-float-slower absolute -bottom-32 left-[-8rem] h-[28rem] w-[28rem] rounded-full bg-sky-500/10 blur-[110px]"
+          />
+
           <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">
+            <Reveal className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-pulse-ring absolute inline-flex h-2 w-2 rounded-full bg-amber-400" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
+              </span>
               Infrastructure · Mining · Consultancy · Trading
-            </p>
-            <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            </Reveal>
+
+            <Reveal delay={80} as="h1" className="mt-6 max-w-3xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
               Building infrastructure.
               <br />
-              Powering industry.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+              <span className="text-gradient-amber">Powering industry.</span>
+            </Reveal>
+
+            <Reveal delay={160} as="p" className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
               {site.legalName}{" "}delivers civil and infrastructure projects,
               responsible mining operations, expert consultancy, and reliable
               trading &amp; supply — for government, public sector, and private
               clients across India.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            </Reveal>
+
+            <Reveal delay={240} className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="#contact"
-                className="rounded-lg bg-amber-500 px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-lg shadow-amber-500/20 transition-colors hover:bg-amber-400"
+                className="group relative overflow-hidden rounded-lg bg-amber-500 px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-lg shadow-amber-500/20 transition-all hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-xl hover:shadow-amber-500/30"
               >
-                Discuss Your Project
+                <span className="relative z-10">Discuss Your Project →</span>
               </Link>
               <Link
                 href="#services"
-                className="rounded-lg border border-slate-600 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:border-slate-400 hover:bg-slate-800"
+                className="rounded-lg border border-slate-600 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-800"
               >
                 Explore Our Services
               </Link>
-            </div>
+            </Reveal>
+
+            <Reveal delay={320} className="mt-16 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-slate-500">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="animate-bounce">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </svg>
+              Scroll to see how we work
+            </Reveal>
           </div>
         </section>
 
         {/* Capability strip */}
         <section className="border-b border-slate-200 bg-slate-50">
-          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px px-4 py-8 text-center sm:px-6 md:grid-cols-4">
-            {[
-              "Civil & Structural Works",
-              "Minerals & Aggregates",
-              "Project Advisory",
-              "Import · Export · Supply",
-            ].map((item) => (
-              <div key={item} className="px-3 py-2 text-sm font-semibold text-slate-700">
-                {item}
+          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px px-4 py-8 sm:px-6 md:grid-cols-4">
+            {capabilities.map((item) => (
+              <div key={item.label} className="flex items-center gap-3 px-3 py-2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0" aria-hidden="true">
+                  {item.icon}
+                </svg>
+                <span className="text-sm font-semibold text-slate-700">{item.label}</span>
               </div>
             ))}
           </div>
@@ -114,19 +142,22 @@ export default function Home() {
         {/* Services */}
         <section id="services" className="scroll-mt-20 py-20 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-600">
-              What we do
-            </p>
-            <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Four verticals. One accountable partner.
-            </h2>
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-600">
+                What we do
+              </p>
+              <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                Four verticals. One accountable partner.
+              </h2>
+            </Reveal>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
-              {services.map((service) => (
-                <article
-                  key={service.id}
-                  className="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-md"
-                >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-900">
+              {services.map((service, i) => (
+                <Reveal key={service.id} delay={i * 90} as="article" className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber-200 hover:shadow-xl hover:shadow-slate-200/60">
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-amber-400 to-amber-600 transition-transform duration-300 group-hover:scale-x-100"
+                  />
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-900 transition-transform duration-300 group-hover:scale-110">
                     <svg
                       width="24"
                       height="24"
@@ -168,21 +199,48 @@ export default function Home() {
                   </ul>
                   <Link
                     href="#contact"
-                    className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 hover:text-amber-700"
+                    className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 transition-all hover:gap-2.5 hover:text-amber-700"
                   >
                     Enquire about {service.title}
                     <span aria-hidden="true">→</span>
                   </Link>
-                </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process */}
+        <section id="process" className="scroll-mt-20 border-y border-slate-200 bg-slate-50 py-20 sm:py-24">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-600">
+                How we work
+              </p>
+              <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                From first enquiry to delivered project
+              </h2>
+            </Reveal>
+            <div className="relative mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+              <div aria-hidden="true" className="absolute top-6 hidden h-px w-full bg-gradient-to-r from-transparent via-slate-300 to-transparent lg:block" />
+              {process.map((item, i) => (
+                <Reveal key={item.step} delay={i * 90} className="relative">
+                  <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-amber-500 bg-white text-sm font-bold text-amber-600 shadow-sm">
+                    {item.step}
+                  </div>
+                  <h3 className="mt-4 font-bold text-slate-900">{item.title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{item.text}</p>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
         {/* About */}
-        <section id="about" className="scroll-mt-20 bg-slate-900 py-20 text-white sm:py-24">
-          <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-2">
-            <div>
+        <section id="about" className="scroll-mt-20 relative overflow-hidden bg-slate-900 py-20 text-white sm:py-24">
+          <div aria-hidden="true" className="bg-grid absolute inset-0 opacity-[0.05]" />
+          <div className="relative mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-2">
+            <Reveal>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">
                 About us
               </p>
@@ -204,11 +262,11 @@ export default function Home() {
               </p>
               <Link
                 href="#contact"
-                className="mt-8 inline-block rounded-lg bg-amber-500 px-7 py-3.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-amber-400"
+                className="mt-8 inline-block rounded-lg bg-amber-500 px-7 py-3.5 text-sm font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:bg-amber-400"
               >
                 Partner With Us
               </Link>
-            </div>
+            </Reveal>
             <div className="grid content-center gap-4">
               {[
                 {
@@ -227,14 +285,15 @@ export default function Home() {
                   k: "Clients we serve",
                   v: "Government, PSUs, institutions, and private enterprises across India.",
                 },
-              ].map((row) => (
-                <div
+              ].map((row, i) => (
+                <Reveal
                   key={row.k}
-                  className="rounded-xl border border-slate-700/80 bg-slate-800/60 p-5"
+                  delay={i * 80}
+                  className="group rounded-xl border border-slate-700/80 bg-slate-800/60 p-5 transition-colors duration-300 hover:border-amber-500/40 hover:bg-slate-800"
                 >
                   <p className="text-sm font-bold text-amber-400">{row.k}</p>
                   <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{row.v}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -243,26 +302,55 @@ export default function Home() {
         {/* Why us */}
         <section id="why-us" className="scroll-mt-20 py-20 sm:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-600">
-              Why Agastya Katyayani
-            </p>
-            <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Built to deliver, structured to last
-            </h2>
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-600">
+                Why Agastya Katyayani
+              </p>
+              <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                Built to deliver, structured to last
+              </h2>
+            </Reveal>
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {whyUs.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+              {whyUs.map((item, i) => (
+                <Reveal
+                  key={item.title}
+                  delay={i * 70}
+                  className="group rounded-2xl border border-slate-200 bg-slate-50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-amber-200 hover:bg-white hover:shadow-lg hover:shadow-slate-200/60"
+                >
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-slate-900">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      {item.icon}
+                    </svg>
+                  </div>
                   <h3 className="font-bold text-slate-900">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
+        {/* FAQ */}
+        <section id="faq" className="scroll-mt-20 border-t border-slate-200 bg-slate-50 py-20 sm:py-24">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6">
+            <Reveal className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-600">
+                Common questions
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                Before you get in touch
+              </h2>
+            </Reveal>
+            <Reveal delay={100} className="mt-10">
+              <Faq />
+            </Reveal>
+          </div>
+        </section>
+
         {/* CTA band */}
-        <section className="bg-amber-500">
-          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center">
+        <section className="relative overflow-hidden bg-gradient-to-r from-amber-500 via-amber-500 to-amber-400">
+          <div aria-hidden="true" className="bg-grid absolute inset-0 opacity-[0.08]" />
+          <div className="relative mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center">
             <div>
               <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                 Have a project or requirement in mind?
@@ -273,7 +361,7 @@ export default function Home() {
             </div>
             <Link
               href="#contact"
-              className="shrink-0 rounded-lg bg-slate-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+              className="shrink-0 rounded-lg bg-slate-900 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl"
             >
               Get in Touch
             </Link>
@@ -283,7 +371,7 @@ export default function Home() {
         {/* Contact */}
         <section id="contact" className="scroll-mt-20 py-20 sm:py-24">
           <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-5">
-            <div className="lg:col-span-2">
+            <Reveal className="lg:col-span-2">
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-600">
                 Contact
               </p>
@@ -299,7 +387,7 @@ export default function Home() {
                 <p className="text-sm font-semibold text-slate-900">Email us directly</p>
                 <a
                   href={`mailto:${site.email}`}
-                  className="mt-1 block break-all text-lg font-bold text-amber-600 hover:text-amber-700"
+                  className="mt-1 block break-all text-lg font-bold text-amber-600 transition-colors hover:text-amber-700"
                 >
                   {site.email}
                 </a>
@@ -309,10 +397,10 @@ export default function Home() {
                   India
                 </p>
               </div>
-            </div>
-            <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm lg:col-span-3">
+            </Reveal>
+            <Reveal delay={100} className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm lg:col-span-3">
               <ContactForm />
-            </div>
+            </Reveal>
           </div>
         </section>
       </main>
@@ -332,15 +420,17 @@ export default function Home() {
             <nav aria-label="Footer" className="grid grid-cols-2 gap-x-12 gap-y-2 text-sm">
               {[
                 { href: "#services", label: "Services" },
+                { href: "#process", label: "Process" },
                 { href: "#about", label: "About" },
                 { href: "#why-us", label: "Why Us" },
+                { href: "#faq", label: "FAQ" },
                 { href: "#contact", label: "Contact" },
               ].map((link) => (
-                <Link key={link.href} href={link.href} className="hover:text-white">
+                <Link key={link.href} href={link.href} className="transition-colors hover:text-white">
                   {link.label}
                 </Link>
               ))}
-              <a href={`mailto:${site.email}`} className="col-span-2 mt-2 font-medium text-amber-400 hover:text-amber-300">
+              <a href={`mailto:${site.email}`} className="col-span-2 mt-2 font-medium text-amber-400 transition-colors hover:text-amber-300">
                 {site.email}
               </a>
             </nav>
@@ -350,6 +440,23 @@ export default function Home() {
           </p>
         </div>
       </footer>
+
+      {/* Sticky mobile CTA */}
+      <div className="fixed inset-x-0 bottom-0 z-40 flex gap-3 border-t border-slate-200 bg-white/95 p-3 backdrop-blur md:hidden">
+        <a
+          href={`mailto:${site.email}`}
+          className="flex-1 rounded-lg border border-slate-300 py-2.5 text-center text-sm font-semibold text-slate-700"
+        >
+          Email Us
+        </a>
+        <Link
+          href="#contact"
+          className="flex-1 rounded-lg bg-amber-500 py-2.5 text-center text-sm font-semibold text-slate-900"
+        >
+          Get a Quote
+        </Link>
+      </div>
+      <div aria-hidden="true" className="h-16 md:hidden" />
     </div>
   );
 }

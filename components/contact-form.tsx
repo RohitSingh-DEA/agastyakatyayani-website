@@ -39,34 +39,34 @@ export function ContactForm() {
   }
 
   const inputClass =
-    "w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition-shadow hover:border-slate-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30";
+    "w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition-shadow hover:border-slate-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-500 dark:hover:border-slate-600";
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-1.5">
-          <span className="text-sm font-medium text-slate-700">Name *</span>
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Name *</span>
           <input name="name" required autoComplete="name" placeholder="Your full name" className={inputClass} />
         </label>
         <label className="grid gap-1.5">
-          <span className="text-sm font-medium text-slate-700">Company / Organisation</span>
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Company / Organisation</span>
           <input name="company" autoComplete="organization" placeholder="Optional" className={inputClass} />
         </label>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-1.5">
-          <span className="text-sm font-medium text-slate-700">Email *</span>
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Email *</span>
           <input name="email" type="email" required autoComplete="email" placeholder="you@example.com" className={inputClass} />
         </label>
         <label className="grid gap-1.5">
-          <span className="text-sm font-medium text-slate-700">Phone</span>
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Phone</span>
           <input name="phone" type="tel" autoComplete="tel" placeholder="+91" className={inputClass} />
         </label>
       </div>
 
       <label className="grid gap-1.5">
-        <span className="text-sm font-medium text-slate-700">Area of interest *</span>
+        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Area of interest *</span>
         <select name="interest" required defaultValue="" className={inputClass}>
           <option value="" disabled>
             Select a service
@@ -81,7 +81,7 @@ export function ContactForm() {
       </label>
 
       <label className="grid gap-1.5">
-        <span className="text-sm font-medium text-slate-700">Message *</span>
+        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Message *</span>
         <textarea
           name="message"
           required
@@ -102,7 +102,7 @@ export function ContactForm() {
       </button>
 
       {submitted && (
-        <p className="flex items-start gap-2.5 rounded-lg bg-emerald-50 p-4 text-sm leading-relaxed text-emerald-800" role="status">
+        <p className="flex items-start gap-2.5 rounded-lg bg-emerald-50 p-4 text-sm leading-relaxed text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300" role="status">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-emerald-600" aria-hidden="true">
             <path d="M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3" />
           </svg>

@@ -15,14 +15,14 @@ export function Logo({ dark = false }: { dark?: boolean }) {
       <span className="leading-tight">
         <span
           className={`block text-base font-bold tracking-tight ${
-            dark ? "text-white" : "text-slate-900"
+            dark ? "text-white" : "text-slate-900 dark:text-white"
           }`}
         >
           Agastya Katyayani
         </span>
         <span
           className={`block text-[10px] font-medium uppercase tracking-[0.18em] ${
-            dark ? "text-slate-400" : "text-slate-500"
+            dark ? "text-slate-400" : "text-slate-500 dark:text-slate-400"
           }`}
         >
           Private Limited

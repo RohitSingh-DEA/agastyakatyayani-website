@@ -7,7 +7,7 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
+    <div className="divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-900">
       {faqs.map((item, i) => {
         const isOpen = openIndex === i;
         return (
@@ -18,9 +18,9 @@ export function Faq() {
               onClick={() => setOpenIndex(isOpen ? null : i)}
               className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6"
             >
-              <span className="text-sm font-semibold text-slate-900 sm:text-base">{item.q}</span>
+              <span className="text-sm font-semibold text-slate-900 dark:text-white sm:text-base">{item.q}</span>
               <span
-                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-transform duration-300 ${
+                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-transform duration-300 dark:bg-slate-800 dark:text-slate-300 ${
                   isOpen ? "rotate-45 bg-amber-500 text-slate-900" : ""
                 }`}
                 aria-hidden="true"
@@ -36,7 +36,7 @@ export function Faq() {
               }`}
             >
               <div className="min-h-0 overflow-hidden">
-                <p className="px-5 pb-4 text-sm leading-relaxed text-slate-600 sm:px-6">{item.a}</p>
+                <p className="px-5 pb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300 sm:px-6">{item.a}</p>
               </div>
             </div>
           </div>

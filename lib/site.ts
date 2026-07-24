@@ -8,6 +8,33 @@ export const site = {
     "Agastya Katyayani Private Limited is an Indian infrastructure and resources company delivering civil construction and infrastructure projects, mining and mineral operations, consultancy and advisory services, and trading and supply of industrial goods and materials.",
 };
 
+// Honest, capability-based figures — no invented project counts.
+export const stats = [
+  { value: 4, suffix: "", label: "Business verticals" },
+  { value: 5, suffix: "", label: "Stage delivery model" },
+  { value: 7, suffix: "+", label: "Mineral categories handled" },
+  { value: 100, suffix: "%", label: "Compliance-first engagements" },
+];
+
+export const marqueeItems = [
+  "Roads & Highways",
+  "Bridges",
+  "Townships",
+  "Industrial Parks",
+  "Public Utilities",
+  "Coal",
+  "Iron Ore",
+  "Bauxite",
+  "Limestone",
+  "Stone Aggregates",
+  "Sand",
+  "Feasibility Studies",
+  "Detailed Project Reports",
+  "Policy Advisory",
+  "Import & Export",
+  "Supply Chain",
+];
+
 export const process = [
   {
     step: "01",
